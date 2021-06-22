@@ -50,7 +50,7 @@ class PantheonSolrConnector extends Solr36Connector {
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     $plugin = new static($configuration, $plugin_id, $plugin_definition, $container->get('search_api_pantheon.schema_poster'));
-    $plugin->eventDispatcher = new Psr14Bridge();
+    $plugin->eventDispatcher = new Psr14Bridge(\Drupal::service('event_dispatcher'));
 
     return $plugin;
   }
